@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore Ethnic Elegance - Lehengas collection.">
+    <title>ROYAL ATTIRE</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/cssh2?family=Playfair+Display:wght@700&family=Bookman+Old+Style:wght@400&display=swap">
+    <style>
+    :root {
+            --text-color: white;
+            --background-color: white;
+            --title-background-color: black;
+            --button-background-color: black;
+            --title-color: #e3c8a8;
+            --subtitle-color: #555;
+            --line-color: #e3c8a8;
+        }
+        * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Bookman Old Style', Arial, sans-serif;
+        background-color: var(--background-color);
+        overflow-x: hidden;
+    }
+
+    .header-section {
+        background-color: var(--title-background-color);
+        padding: 10px 0;
+        text-align: center;
+        position: relative;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .buttons-left {
+        display: flex;
+        align-items: center;
+    }
+
+    .buttons-left button {
+        margin-right: 10px;
+        padding: 10px 20px;
+        font-size: 13px;
+        cursor: pointer;
+        border: none;
+        background-color: var(--button-background-color);
+        color: var(--text-color);
+        outline: none;
+    }
+
+    .buttons-left button:nth-child(1) {
+    border: 2px solid white; /* Change border color to white */
+}
+
+.buttons-left button:nth-child(2) {
+    border: none; /* Remove border color for diffuse */
+}
+
+
+    .title-container {
+    flex: 1;
+    display: flex;
+    justify-content: center; /* Center items horizontally */
+    align-items: center;
+    }
+
+    .title {
+        font-family: 'Playfair Display', serif;
+        font-size: 40px;
+        font-weight: bold;
+        text-align: center;
+        text-transform: uppercase;
+        color: var(--title-color);
+        background-color: var(--title-background-color);
+        padding: 1px 18px;
+        margin: 0;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    }
+
+    .cart-icon {
+        font-size: 24px;
+        color: var(--text-color);
+        cursor: pointer;
+    }
+
+    .subtitle-container {
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    .subtitle {
+        font-family: 'Playfair Display', serif;
+        font-size: 25px;
+        color: var(--subtitle-color);
+    }
+
+    .pictures-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .picture {
+        position: relative;
+        width: calc(25% - 20px); /* Adjusted width calculation */
+        margin: 10px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+        text-align: center; /* Align images and content center */
+    }
+
+    .picture button {
+        border: none;
+        background: none;
+        padding: 0;
+        cursor: pointer;
+    }
+
+    .picture img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: transform 0.3s ease;
+    }
+
+    .picture:hover img {
+        transform: scale(1.1);
+    }
+
+    .image-text-container {
+        text-align: center;
+        margin-top: 20px;
+        font-family: 'Bookman Old Style', Times, serif;
+        padding-top: 20px; /* Increased top padding */
+    }
+
+    .image-couture {
+        font-size: 16px; /* Increased font size */
+        color: grey;
+        margin-bottom: 10px; /* Increased margin bottom */
+    }
+
+    .image-text {
+        font-size: 18px; /* Increased font size */
+        color: black;
+        text-transform: uppercase;
+        margin-bottom: 10px; /* Increased margin bottom */
+    }
+
+    .image-price {
+        font-size: 16px; /* Increased font size */
+        color: grey;
+    }
+
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0, 0, 0, 0.5);
+    }
+
+    .modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%; /* Increase the width as needed */
+    max-width: 1000px; /* Limit maximum width */
+    display: flex;
+    position: relative;
+    align-items: flex-start;
+}
+
+
+    .close {
+        color: #aaa;
+        position: absolute;
+        top: 5px;
+        right: 10px;
+        font-size: 28px;
+        font-weight: bold;
+        cursor: pointer;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .modal-img {
+    width: 40%; /* Adjust the width of the image area */
+    height: auto;
+    margin-right: 20px;
+    max-width: 100%; /* Ensure image does not exceed container */
+}
+
+    .additional-images {
+        width: 13%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-right: 20px;
+    }
+
+    .additional-images img {
+        width: 100%;
+        margin-bottom: 10px;
+        cursor: pointer;
+        border: 1px solid #ccc;
+        transition: border-color 0.3s ease;
+    }
+
+    .additional-images img:hover {
+        border-color: #000;
+    }
+
+    .image-details {
+        width: 50%;
+        display: flex;
+        flex-direction: column;
+        margin-left: 20px;
+    }
+
+    .image-details .image-text-container {
+        margin-top: 0;
+    }
+
+    .add-to-cart-button {
+        background-color: var(--button-background-color);
+        color: var(--text-color);
+        padding: 10px;
+        cursor: pointer;
+        border: none;
+        text-align: center;
+        margin-top: 10px;
+        width: 100%;
+    }
+
+    .size-options {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+    }
+
+    .size-options .sizes-available {
+        font-size: 16px;
+        color: #555;
+        margin-bottom: 10px;
+    }
+
+    .size-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+
+    .size-buttons button {
+        padding: 10px 20px;
+        margin: 5px;
+        cursor: pointer;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+        outline: none;
+        font-size: 16px;
+        border-radius: 15px; /* Adjusted oval shape */
+        transition: background-color 0.3s ease;
+    }
+
+    .size-buttons button:hover {
+        background-color: #e0e0e0;
+    }
+
+    .size-buttons .selected {
+        background-color: #000;
+        color: #fff;
+    }
+
+    .size-chart-link {
+        color: blue;
+        cursor: pointer;
+        margin-top: 10px;
+    }
+
+    .size-chart {
+        display: none;
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+        background-color: #fefefe;
+        padding: 20px;
+        border: 1px solid #888;
+        z-index: 1;
+    }
+
+    .cart-layout {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 80%; /* Adjust width as needed */
+    max-width: 800px; /* Limit maximum width */
+    height: 80%; /* Adjust height as needed */
+    max-height: 600px; /* Limit maximum height */
+    overflow-y: auto; /* Enable vertical scrolling if content exceeds height */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.cart-heading {
+    top: 0%;
+    text-align: center; /* Center-align the heading */
+    margin-bottom: 20px; /* Adjust margin as needed */
+    font-size: 1.5rem;
+    background-color: rgb(35, 35, 36);
+    color:white /* Adjust font size as needed */
+}
+
+.cart-content {
+    /* Adjust padding or margins inside the cart content as necessary */
+    padding: 10px;
+    width: 100%; /* Ensure full width of content */
+}
+
+
+.cart-item {
+    /* Styles for each individual item in the cart */
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    display: flex;
+    align-items: center;
+    width: 100%; /* Ensure items take full width */
+}
+
+.cart-item img {
+    width: 60px;
+    height: 80px;
+    object-fit: cover;
+    margin-right: 5px;
+}
+
+.cart-item-details {
+    /* Adjust margins or padding for item details */
+    padding-left: 10px;
+    flex: 1; /* Allow details to expand and fill available space */
+}
+
+
+
+.cart-item-title {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.cart-item-size {
+    font-size: 14px;
+    color: #555;
+}
+
+.cart-item-price {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 5px;
+}
+
+.cart-buttons {
+    /* Adjust margins or padding for buttons section */
+    margin-top: 10px;
+    text-align: center; /* Center-align buttons */
+    width: 100%; /* Ensure buttons take full width */
+}
+
+.cart-buttons button {
+    padding: 10px 20px;
+    margin: 0 5px;
+    cursor: pointer;
+    border: none;
+    background-color: var(--button-background-color);
+    color: var(--text-color);
+    outline: none;
+}
+
+.cart-buttons button:hover {
+    background-color: #555;
+}
+
+.total-price {
+    font-size: 20px;
+    margin-top: 20px;
+    font-weight: bold;
+}
+.popup-message {
+    display: none; /* Ensure it's initially hidden */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 20px;
+    z-index: 1000;
+    border-radius: 4px;
+    text-align: center;
+}
+.footer {
+    background-color: black; /* Change background color to black */
+    color: var(--footer-text-color);
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    clear: both;
+}
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 24px;
+        }
+
+        .footer a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .footer p {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .social-icons {
+            color: white;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .social-icons img {
+            width: 40px; /* Adjust size as needed */
+            height: auto;
+            vertical-align: middle;
+        }
+        .footer a {
+                font-size: 20px;
+            }
+            .popup-message {
+    display: none; /* Ensure it's initially hidden */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: black; /* Change background color to black */
+    color: white;
+    padding: 10px;
+    z-index: 1000;
+    border-radius: 4px;
+    text-align: center;
+    opacity: 1; /* Ensure full opacity */
+}
+
+
+
+    </style>
+</head>
+<body>
+    <section class="header-section">
+        <div class="buttons-left">
+            <button onclick="location.href='couture1.html'" aria-label="couture">COUTURE</button>
+            <button onclick="location.href='diffuse1.html'" aria-label="diffuse">DIFFUSE</button>
+        </div>
+        <div class="title-container">
+            <h1 class="title">SHERWANIES</h1>
+        </div>
+        <div class="cart-icon" onclick="openCartModal()">&#128722;</div>
+    </section>
+    <div class="subtitle-container">
+        <p class="subtitle">Unleashing power and style in this sherwanies</p>
+    </div>
+    <section class="pictures-container">
+        <!-- Example picture card -->
+        
+        <div class="picture">
+            <button onclick="openModal('she2.jpg', 'Champagne Textured Sherwani Set', 43000, ['she2.jpg'],['XS', 'S', 'M', 'L', 'XL'])">
+                <img src="she2.jpg" alt="Lehanga 2">
+            </button>
+            <div class="image-text-container">
+                <p class="image-diffuse">COUTURE</p>
+                <p class="image-text">Champagne Textured...</p>
+                <p class="image-price" data-price="43000" data-currency="usd">MRP: ₹43000</p>
+            </div>
+        </div>
+         <div class="picture">
+            <button onclick="openModal('she3.jpg', 'Blue Embroidered Sherwani Set', 85000 , ['she3.jpg'], ['XS', 'S', 'M', 'L', 'XL'])">
+                <img src="she3.jpg" alt="Lehanga 3">
+            </button>
+            <div class="image-text-container">
+                <p class="image-diffuse">COUTURE</p>
+                <p class="image-text">Blue Embroidered Sher...</p>
+                <p class="image-price" data-price="85000 " data-currency="usd">MRP: ₹85000 </p>
+            </div>
+        </div>
+          <div class="picture">
+            <button onclick="openModal('she1.jpg', 'Beige Embroidered Sherwani Set', 53000, ['she1.jpg'], ['XS', 'S', 'M', 'L', 'XL'])">
+                <img src="she1.jpg" alt="Lehanga 3">
+            </button>
+            <div class="image-text-container">
+                <p class="image-diffuse">COUTURE</p>
+                <p class="image-text">Beige Embroidered Sher...</p>
+                <p class="image-price" data-price="53000" data-currency="usd">MRP: ₹53000</p>
+            </div>
+        </div>
+    <div class="picture">
+        <button onclick="openModal('she8.jpg', 'Grey Embroidered Sherwani Set',  45000, ['she8.jpg'], ['XS', 'S', 'M', 'L', 'XL'])">
+            <img src="she8.jpg" alt="Lehanga 1">
+        </button>
+        <div class="image-text-container">
+            <p class="image-diffuse">COUTURE</p>
+            <p class="image-text">Grey Embroidered Sher...</p>
+            <p class="image-price" data-price=" 45000" data-currency="usd">MRP: ₹ 45000</p>
+            </div>
+        </div>
+        <!-- Add more pictures as needed -->
+    </div>
+        <div class="picture">
+            <button onclick="openModal('she4.jpg', 'Black Embroidered Sherwani Set', 53000, ['she4.jpg'], ['XS', 'S', 'M', 'L', 'XL'])">
+                <img src="she4.jpg" alt="Lehanga 3">
+            </button>
+            <div class="image-text-container">
+                <p class="image-diffuse">COUTURE</p>
+                <p class="image-text">Black Embroidered Sher...</p>
+                <p class="image-price" data-price=" 53000" data-currency="usd">MRP: ₹ 53000</p>
+            </div>
+        </div>
+        <div class="picture">
+            <button onclick="openModal('she7.jpg', 'Black Dori Embroidered Sherwani Set', 45000, ['she7.jpg'], ['XS', 'S', 'M', 'L', 'XL'])">
+                <img src="she7.jpg" alt="Lehanga 3">
+            </button>
+            <div class="image-text-container">
+                <p class="image-diffuse">COUTURE</p>
+                <p class="image-text">Black Dori Embroidered...</p>
+                <p class="image-price" data-price="45000" data-currency="usd">MRP: ₹45000</p>
+            </div>
+        </div>
+        <div class="picture">
+            <button onclick="openModal('she5.jpg', 'Black Embroidered Sherwani Set', 19500, ['she5.jpg'], ['XS', 'S', 'M', 'L', 'XL'])">
+                <img src="she5.jpg" alt="Lehanga 3">
+            </button>
+            <div class="image-text-container">
+                <p class="image-diffuse">COUTURE</p>
+                <p class="image-text">Black Embroidered Sherwani Set...</p>
+                <p class="image-price" data-price="19500" data-currency="usd">MRP: ₹19500</p>
+            </div>
+        </div>
+       
+        <div class="picture">
+            <button onclick="openModal('she6.jpg', 'Black Embroidered Sherwani Set',43000, ['she6.jpg'], ['XS', 'S', 'M', 'L', 'XL'])">
+                <img src="she6.jpg" alt="Lehanga 3">
+            </button>
+            <div class="image-text-container">
+                <p class="image-diffuse">COUTURE</p>
+                <p class="image-text">Black Embroidered Sher...</p>
+                <p class="image-price" data-price="43000" data-currency="usd">MRP: ₹43000</p>
+            </div>
+        </div>
+       
+        <!-- End of example picture card -->
+    </section>
+
+    <!-- Modal for displaying lehenga details -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <img src="image.jpg" alt="Lehenga Image" class="modal-img">
+            <div class="additional-images">
+                <img src="image1.jpg" alt="Additional Image" onclick="changeModalImage('image1.jpg')">
+                <img src="image2.jpg" alt="Additional Image" onclick="changeModalImage('image2.jpg')">
+            </div>
+            <div class="image-details">
+                <div class="image-text-container">
+                    <div class="image-diffuse">Diffuse</div>
+                    <div class="image-text" id="modalTitle">Lehenga Title</div>
+                    <div class="image-price" id="modalPrice">₹ 999</div>
+                </div>
+                
+                <div class="size-options">
+                    <div class="sizes-available">Available Sizes:</div>
+                    <div class="size-buttons">
+                        <button onclick="selectSize(this, ['S', 'M', 'L'])">S</button>
+                        <button onclick="selectSize(this, ['S', 'M', 'L'])">M</button>
+                        <button onclick="selectSize(this, ['S', 'M', 'L'])">L</button>
+                    </div>
+                    <div class="size-chart-link" onclick="toggleSizeChart()">Size Chart</div>
+                    <div class="size-chart">
+                        <span class="close" onclick="toggleSizeChart()">&times;</span> <!-- Close button for size chart -->
+                        <img src="sizechart1.jpg" alt="Size Chart">
+                    </div>
+                </div>
+                <button class="add-to-cart-button" onclick="addToCart()">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Cart modal -->
+    <div id="cartModal" class="cart-layout" style="display: none;">
+        <div class="cart-content">
+            <span class="close" onclick="closeCartModal()">&times;</span>
+            <div class="cart-heading"><h2>CART</h2></div>
+            
+            <!-- Example cart item -->
+            <div id="cartItemsContainer">
+                <!-- Cart items will be dynamically added here -->
+            </div>
+            <!-- End of example cart item -->
+    
+            <!-- Total price section -->
+            <div id="totalPriceContainer" class="total-price">
+                Total Price: ₹ 0 <!-- Initial display of total price -->
+            </div>
+    
+            <!-- Buttons section -->
+            <div class="cart-buttons">
+                <button onclick="closeCartModal()">Continue Shopping</button>
+                <button onclick="handleCheckout()">Checkout</button>
+            </div>
+        </div>
+    </div>
+    <div id="checkoutPopup" class="popup-message">
+        <p id="checkoutMessage"></p>
+    </div>
+    
+    
+    <!-- After the </body> tag -->
+
+
+
+    <script>
+        // Function to open the modal with lehenga details
+        function openModal(imgSrc, title, price, additionalImages, sizes) {
+    let modal = document.getElementById("myModal");
+    modal.style.display = "block";
+    document.querySelector(".modal-img").src = imgSrc;
+    document.getElementById("modalTitle").textContent = title;
+    document.getElementById("modalPrice").textContent = "₹ " + price.toFixed(2); // Prepend dollar symbol and format to 2 decimal places
+
+    // Display additional images in the modal
+    let additionalImagesContainer = document.querySelector(".additional-images");
+    additionalImagesContainer.innerHTML = "";
+    additionalImages.forEach(image => {
+        let imgElement = document.createElement("img");
+        imgElement.src = image;
+        imgElement.alt = "Additional Image";
+        imgElement.onclick = function() {
+            changeModalImage(image);
+        };
+        additionalImagesContainer.appendChild(imgElement);
+    });
+
+    // Reset size buttons and size chart
+    let sizeButtons = document.querySelectorAll(".size-buttons button");
+    sizeButtons.forEach(button => button.classList.remove("selected"));
+
+    // Update size options
+    let sizeOptions = document.querySelector(".size-buttons");
+    sizeOptions.innerHTML = "";
+    sizes.forEach(size => {
+        let sizeButton = document.createElement("button");
+        sizeButton.textContent = size;
+        sizeButton.onclick = function() {
+            selectSize(this, sizes);
+        };
+        sizeOptions.appendChild(sizeButton);
+    });
+}
+
+
+        // Function to change the main image in the modal
+        function changeModalImage(image) {
+            document.querySelector(".modal-img").src = image;
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            let modal = document.getElementById("myModal");
+            modal.style.display = "none";
+        }
+
+        // Function to toggle the size chart display
+        function toggleSizeChart() {
+    let sizeChart = document.querySelector(".size-chart");
+    sizeChart.style.display = sizeChart.style.display === "block" ? "none" : "block";
+}
+
+        // Function to select a size for the lehenga
+        function selectSize(button, sizes) {
+            let sizeButtons = document.querySelectorAll(".size-buttons button");
+            sizeButtons.forEach(btn => btn.classList.remove("selected"));
+            button.classList.add("selected");
+        }
+
+        // Function to open the cart modal
+        function openCartModal() {
+    let cartModal = document.getElementById("cartModal");
+    cartModal.style.display = "flex";
+}
+
+        // Function to close the cart modal
+        function closeCartModal() {
+            let cartModal = document.getElementById("cartModal");
+            cartModal.style.display = "none";
+        }
+        // Function to add the selected item to the cart
+function addToCart() {
+    console.log("addToCart function called.");// Get the modal elements for details
+    let modalTitle = document.getElementById("modalTitle").textContent;
+    let modalImage = document.querySelector(".modal-img").src;
+    let modalPrice = parseFloat(document.getElementById("modalPrice").textContent.replace(/[^\d.]/g, ''));
+
+    // Find the cart content area to append the new item
+    let cartItemsContainer = document.getElementById("cartItemsContainer");
+
+    // Create new cart item structure
+    let cartItem = document.createElement("div");
+    cartItem.classList.add("cart-item");
+
+    // Image part of cart item
+    let cartItemImage = document.createElement("img");
+    cartItemImage.src = modalImage;
+    cartItemImage.alt = "Cart Item Image";
+    cartItemImage.classList.add("cart-item-image");
+
+    // Details part of cart item
+    let cartItemDetails = document.createElement("div");
+    cartItemDetails.classList.add("cart-item-details");
+
+    // Title
+    let cartItemTitle = document.createElement("div");
+    cartItemTitle.classList.add("cart-item-title");
+    cartItemTitle.textContent = modalTitle;
+
+    // Size (can be obtained from selected size)
+    let cartItemSize = document.createElement("div");
+    cartItemSize.classList.add("cart-item-size");
+    let selectedSize = document.querySelector(".size-buttons button.selected");
+    if (selectedSize) {
+        cartItemSize.textContent = "Size: " + selectedSize.textContent;
+    }
+
+    // Price
+    let cartItemPrice = document.createElement("div");
+    cartItemPrice.classList.add("cart-item-price");
+    cartItemPrice.textContent = modalPrice;
+
+    // Append all elements to cart item details
+    cartItemDetails.appendChild(cartItemTitle);
+    cartItemDetails.appendChild(cartItemSize);
+    cartItemDetails.appendChild(cartItemPrice);
+
+    // Append image and details to cart item
+    cartItem.appendChild(cartItemImage);
+    cartItem.appendChild(cartItemDetails);
+
+    // Append cart item to cart content
+    cartItemsContainer.appendChild(cartItem);
+
+    // Calculate and display total price
+    calculateTotalPrice();
+
+    // Close the modal after adding to cart
+    closeModal();
+
+    // Show popup notification
+    let popupMessage = document.getElementById("popupMessage");
+    if (popupMessage) {
+        popupMessage.textContent = "Item added to cart!";
+        popupMessage.style.display = "block";
+    } else {
+        console.error("popupMessage element not found."); // Check if the popupMessage element exists
+    }
+
+    // Hide the pop-up message after 3 seconds (3000 milliseconds)
+    setTimeout(function() {
+        if (popupMessage) {
+            popupMessage.style.display = "none";
+        }
+    }, 1000);
+}
+
+// Function to calculate and display total price in cart
+function calculateTotalPrice() {
+    let totalPrice = 0;
+    let cartItems = document.querySelectorAll(".cart-item-price");
+    cartItems.forEach(item => {
+        let priceString = item.textContent.trim().replace(/[^\d.]/g, ''); // Remove non-numeric characters
+        totalPrice += parseFloat(priceString);
+    });
+    let totalPriceContainer = document.getElementById("totalPriceContainer");
+    totalPriceContainer.textContent = "Total Price: ₹ " + totalPrice.toFixed(2); // Format to 2 decimal places
+}
+// Function to handle checkout button click
+function handleCheckout() {
+    // Perform any necessary checkout logic here (e.g., redirect to payment page, etc.)
+
+    // Display popup message
+    let checkoutPopup = document.getElementById("checkoutPopup");
+    let checkoutMessage = document.getElementById("checkoutMessage");
+
+    checkoutMessage.textContent = "Proceed to Checkout";
+    checkoutPopup.style.display = "block";
+
+    // Hide popup after 3 seconds
+    setTimeout(function() {
+        checkoutPopup.style.display = "none";
+        // Optionally, redirect to the checkout page here
+    }, 1000); // Adjust timing as needed
+}
+
+
+        // Function to add the selected item to the cart
+        // Function to add the selected item to the cart
+// Function to add the selected item to the cart
+    </script>
+    <footer class="footer">
+        <p>&copy; 2024 Royal Attire. All rights reserved.</p>
+        <p>For inquiries, contact us at <a href="mailto:info@royalattire.com">info@royalattire.com</a></p>
+        <div class="social-icons">
+            <a href="https://instagram.com" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png" alt="Instagram"></a>
+            <a href="https://facebook.com" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/1024px-Facebook_f_logo_%282019%29.svg.png" alt="Facebook"></a>
+            <a href="https://youtube.com" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/YouTube_icon_%282013-2017%29.png/240px-YouTube_icon_%282013-2017%29.png" alt="YouTube"></a>
+            <a href="https://pinterest.com" target="_blank"><img src="pinterest.jpg" alt="Pinterest"></a>
+        </div>
+    </footer>
+</body>
+<div id="popupMessage" class="popup-message"></div>
+</html>
