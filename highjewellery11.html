@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Explore Ethnic Elegance - Lehengas collection.">
+    <title>High Jewellery</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Bookman+Old+Style:wght@400&display=swap">
+    <style>
+        :root {
+            --text-color: white;
+            --background-color: white;
+            --title-background-color: rgb(255, 254, 254);
+            --button-background-color: rgb(255, 255, 255);
+            --title-color: #e3c8a8;
+            --subtitle-color: #555;
+            --line-color: #e3c8a8;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Bookman Old Style', Arial, sans-serif;
+            background-color: var(--background-color);
+            overflow-x: hidden;
+        }
+
+        .header-section {
+            background-color: var(--title-background-color);
+            padding: 10px 0;
+            text-align: center;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .buttons-left {
+            display: flex;
+            align-items: center;
+            border-color: black;
+        }
+
+        .buttons-left button {
+            margin-right: 10px;
+            padding: 10px 20px;
+            font-size: 13px;
+            cursor: pointer;
+            border-color:black;
+            background-color:rgb(241, 235, 235);
+            color: black;
+            outline: none;
+            margin-left: 10px;
+        }
+
+        .buttons-left button:focus {
+            border: black;
+
+        }
+
+        .buttons-left button:nth-child(2) {
+            border: 2px solid var(--text-color);
+            border-color: black;
+        }
+
+        .title-container {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .title {
+            font-family: 'Playfair Display', serif;
+            font-size: 40px;
+            font-weight: bold;
+            text-align: center;
+            text-transform: uppercase;
+            color: black;
+            background-color: var(--title-background-color);
+            padding: 1px 18px;
+            margin: 0;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            padding-left: 0px;
+        }
+
+        .cart-icon {
+            font-size: 24px;
+            color: var(--text-color);
+            cursor: pointer;
+        }
+
+        .subtitle-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-size: 25px;
+            color: var(--subtitle-color);
+        }
+
+        .pictures-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .picture {
+            position: relative;
+            width: calc(25% - 20px);
+            margin: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .picture img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: transform 0.3s ease;
+        }
+
+        .picture:hover img {
+            transform: scale(1.1);
+        }
+
+        .image-text-container {
+            text-align: center;
+            margin-top: 20px;
+            font-family: 'Bookman Old Style', Times, serif;
+            padding-top: 20px;
+        }
+
+        .image-diffuse {
+            font-size: 16px;
+            color: grey;
+            margin-bottom: 10px;
+        }
+
+        .image-text {
+            font-size: 18px;
+            color: black;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        .image-price {
+            font-size: 16px;
+            color: grey;
+        }
+
+        .close {
+            color: #aaa;
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: rgb(46, 45, 45);
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .image-details {
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            margin-left: 20px;
+        }
+
+        .cart-layout {
+    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 400px;
+    height: 100%;
+    background-color: rgb(255, 254, 254);
+    box-shadow: -2px 0 5px rgba(53, 51, 51, 0.5);
+    z-index: 1000;
+    padding: 20px;
+}
+
+
+        .cart-heading {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+            background-color: rgb(244, 244, 250);
+            color: rgb(7, 7, 7);
+            width: 100%;
+            padding: 10px 0;
+        }
+
+        .cart-content {
+            padding: 10px;
+            width: 100%;
+        }
+
+        .cart-items {
+            /* Styling for individual cart items */
+        }
+
+        .cart-item {
+            margin-bottom: 10px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+            display: flex;
+            align-items: center;
+        }
+
+        .cart-item img {
+            width: 60px;
+            height: 80px;
+            object-fit: cover;
+            margin-right: 5px;
+        }
+
+        .cart-item-details {
+            padding-left: 10px;
+            flex: 1;
+        }
+
+        .cart-item-title {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .cart-item-price {
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 5px;
+        }
+
+        .cart-total {
+            margin-top: 20px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .cart-buttons {
+            display: fixed;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .cart-buttons button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            cursor: pointer;
+            border: none;
+            background-color: black;
+            color: white;
+            font-size: 16px;
+            outline: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .cart-buttons button:hover {
+            background-color: #333;
+        }
+
+        .footer {
+    background-color: black; /* Change background color to black */
+    color: var(--footer-text-color);
+    text-align: center;
+    padding: 20px;
+    width: 100%;
+    clear: both;
+}
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 24px;
+        }
+
+        .footer a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+
+        .footer p {
+            color: white;
+            margin-bottom: 10px;
+        }
+
+        .social-icons {
+            color: white;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            margin: 0 10px;
+        }
+
+        .social-icons img {
+            width: 40px; /* Adjust size as needed */
+            height: auto;
+            vertical-align: middle;
+        }
+        .footer a {
+                font-size: 20px;
+            }
+
+        .added-to-cart-popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: black;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            z-index: 1001;
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 1200px) {
+            .picture {
+                width: calc(33.33% - 20px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .picture {
+                width: calc(50% - 20px);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .picture {
+                width: 100%;
+            }
+        }
+        .checkout-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: black;
+    color: white;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1001;
+    font-size: 1.2rem;
+}
+
+.checkout-content {
+    text-align: center;
+}
+
+.checkout-content button {
+    margin-top: 10px;
+    padding: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    outline: none;
+}
+
+.checkout-content button:hover {
+    background-color: #555;
+}
+
+    </style>
+</head>
+<body>
+    <div class="header-section">
+        <div class="buttons-left">
+            <button onclick="location.href='raa1.html'" aria-label="Navigate to Home page">Home</button>
+            <button onclick="location.href='highjewellery1.html'" aria-label="Navigate to Raa1 page">High Jewellery</button>
+        </div>
+        <div class="title-container">
+            <h1 class="title">High Jewellery</h1>
+        </div>
+        <div class="cart-icon" onclick="openCart()" aria-label="Open Cart">&#128722;</div>
+    </div>
+    <div class="subtitle-container">
+        <h2 class="subtitle">Explore the elegance and beauty of Jewellery</h2>
+    </div>
+    <div class="pictures-container">
+        <div class="picture" onclick="openModal(0)">
+            <img src="j1.jpg" alt="FINE BENGAL FILIGREE">
+                <p class="image-text">FINE BENGAL FILIGREE...</p>
+                <p class="image-price" data-price="95000" data-currency="usd">MRP: ₹ 95000</p>
+            <button onclick="addToCart(0); event.stopPropagation();" style="margin-top: 10px; padding: 10px 20px; background-color: black; color: white; cursor: pointer;">Add to Cart</button>
+        </div>
+        
+        <div class="picture" onclick="openModal(2)">
+            <img src="j3.jpg" alt="Emerald jewels">
+            <p class="image-text">Emerald jewels...</p>
+                <p class="image-price" data-price="65000" data-currency="usd">MRP: ₹ 65000</p>
+            <button onclick="addToCart(2); event.stopPropagation();" style="margin-top: 10px; padding: 10px 20px; background-color: black; color: white; cursor: pointer;">Add to Cart</button>
+        </div>
+        <div class="picture" onclick="openModal(7)">
+            <img src="j8.jpg" alt="THE EAST OF BENGAL CHANDBALIS ">
+            <p class="image-text">THE EAST OF BENGAL CHANDBALIS...</p>
+                <p class="image-price" data-price="75000" data-currency="usd">MRP: ₹ 75000</p>
+            <button onclick="addToCart(7); event.stopPropagation();" style="margin-top: 10px; padding: 10px 20px; background-color: black; color: white; cursor: pointer;">Add to Cart</button>
+        </div>
+        <div class="picture" onclick="openModal(1)">
+            <img src="j2.jpg" alt="INE BENGAL FILIGREE">
+            <p class="image-text">INE BENGAL FILIGREE...</p>
+                <p class="image-price" data-price="65000" data-currency="usd">MRP: ₹ 65000</p>
+            <button onclick="addToCart(1); event.stopPropagation();" style="margin-top: 10px; padding: 10px 20px; background-color: black; color: white; cursor: pointer;">Add to Cart</button>
+        </div>
+        <div class="picture" onclick="openModal(3)">
+            <img src="j4.png" alt="Emerald jewels">
+            <p class="image-text">Emerald jewels...</p>
+                <p class="image-price" data-price="95000" data-currency="usd">MRP: ₹ 95000</p>
+            <button onclick="addToCart(3); event.stopPropagation();" style="margin-top: 10px; padding: 10px 20px; background-color: black; color: white; cursor: pointer;">Add to Cart</button>
+        </div>
+        <div class="picture" onclick="openModal(4)">
+            <img src="j5.png" alt="INE BENGAL FILIGREE">
+            <p class="image-text">INE BENGAL FILIGREE...</p>
+                <p class="image-price" data-price="65000" data-currency="usd">MRP: ₹ 65000</p>
+            <button onclick="addToCart(4); event.stopPropagation();" style="margin-top: 10px; padding: 10px 20px; background-color: black; color: white; cursor: pointer;">Add to Cart</button>
+        </div>
+        <div class="picture" onclick="openModal(5)">
+            <img src="j6.jpg" alt="THE EAST OF BENGAL CHANDBALIS">
+            <p class="image-text">THE EAST OF BENGAL CHANDBALIS...</p>
+                <p class="image-price" data-price="95000" data-currency="usd">MRP: ₹ 695000</p>
+            <button onclick="addToCart(5); event.stopPropagation();" style="margin-top: 10px; padding: 10px 20px; background-color: black; color: white; cursor: pointer;">Add to Cart</button>
+        </div>
+        <div class="picture" onclick="openModal(6)">
+            <img src="j7.png" alt="Emerald Filigree">
+            <p class="image-text">Emerald Filigree...</p>
+                <p class="image-price" data-price="95000" data-currency="usd">MRP: ₹ 695000</p>
+            <button onclick="addToCart(6); event.stopPropagation();" style="margin-top: 10px; padding: 10px 20px; background-color: black; color: white; cursor: pointer;">Add to Cart</button>
+        </div>
+        
+    </div>
+
+    <!-- Modal for item details -->
+    <div id="modal" class="modal" style="display: none;">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img id="modal-img" src="" alt="Item Image" style="max-width: 100%; max-height: 400px; margin: auto; display: block;">
+        <h2 id="modal-title" style="text-align: center;"></h2>
+        <p id="modal-price" style="text-align: center; font-weight: bold;"></p>
+        <button onclick="addToCart(selectedItemId)" style="display: block; margin: 20px auto; padding: 10px 20px; background-color: rgb(37, 36, 36); color: white; cursor: pointer;">Add to Cart</button>
+    </div>
+
+    <!-- Cart layout -->
+    <div id="cart" class="cart-layout">
+        <h2 class="cart-heading">Cart</h2>
+        <div class="cart-content">
+            <div id="cart-items"></div>
+            <p class="cart-total">Total: <span id="cart-total-price">$0</span></p>
+            <div class="cart-buttons">
+                <button onclick="closeCart()">Continue Shopping</button>
+                <button onclick="checkout()">Checkout</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Popup for "Added to Cart" -->
+    <div id="added-to-cart-popup" class="added-to-cart-popup">Added to Cart</div>
+    <!-- Popup for Checkout -->
+<div id="checkout-popup" class="checkout-popup">
+    <div class="checkout-content">
+        <p>Proceed to Checkout</p>
+    </div>
+</div>
+
+
+    <footer class="footer">
+        <p>&copy; 2024 Royal Attire. All rights reserved.</p>
+        <p>For inquiries, contact us at <a href="mailto:info@royalattire.com">info@royalattire.com</a></p>
+        <div class="social-icons">
+            <a href="https://instagram.com" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a5/Instagram_icon.png/2048px-Instagram_icon.png" alt="Instagram"></a>
+            <a href="https://facebook.com" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/1024px-Facebook_f_logo_%282019%29.svg.png" alt="Facebook"></a>
+            <a href="https://youtube.com" target="_blank"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/42/YouTube_icon_%282013-2017%29.png/240px-YouTube_icon_%282013-2017%29.png" alt="YouTube"></a>
+            <a href="https://pinterest.com" target="_blank"><img src="pinterest.jpg" alt="Pinterest"></a>
+        </div>
+    </footer>
+    <script>
+        let selectedItemId = null;
+        let items = [
+            { title: 'Emerald Bracelet 1', price: 10000, image: 'j1.jpg' },
+            { title: 'Emerald Bracelet 2', price: 10000, image: 'j2.jpg' },
+            { title: 'Emerald Bracelet 3', price: 10000, image: 'j3.jpg' },
+            { title: 'Emerald Bracelet 4', price: 10000, image: 'j4.png' },
+            { title: 'Emerald Bracelet 5', price: 10000, image: 'j5.png' },
+            { title: 'Emerald Bracelet 6', price: 10000, image: 'j6.jpg' },
+            { title: 'Emerald Bracelet 7', price: 10000, image: 'j7.png' },
+            { title: 'Emerald Bracelet 8', price: 10000, image: 'j8.jpg' }
+        ];
+
+        let cartItems = [];
+
+        function openModal(item_id) {
+            let item = items[item_id];
+            if (item) {
+                selectedItemId = item_id;
+                document.getElementById('modal-img').src = item.image;
+                document.getElementById('modal-title').textContent = item.title;
+                document.getElementById('modal-price').textContent = '₹' + item.price;
+                document.getElementById('modal').style.display = 'block';
+            }
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+            selectedItemId = null;
+        }
+
+        function addToCart(item_id) {
+            let item = items[item_id];
+            if (item) {
+                cartItems.push({
+                    title: item.title,
+                    price: item.price,
+                    image: item.image
+                });
+                showAddedToCartPopup();
+                updateCart();
+            }
+        }
+
+        function showAddedToCartPopup() {
+            let popup = document.getElementById('added-to-cart-popup');
+            popup.style.display = 'block';
+            setTimeout(() => {
+                popup.style.display = 'none';
+            }, 900); // Hide the popup after 2 seconds
+        }
+
+        function updateCart() {
+            let cartItemsElement = document.getElementById('cart-items');
+            cartItemsElement.innerHTML = '';
+            let total = 0;
+            cartItems.forEach(item => {
+                total += item.price;
+                let cartItem = document.createElement('div');
+                cartItem.classList.add('cart-item');
+                cartItem.innerHTML = `
+                    <img src="${item.image}" alt="Item">
+                    <div class="cart-item-details">
+                        <p class="cart-item-title">${item.title}</p>
+                        <p class="cart-item-price"> ₹${item.price}</p>
+                    </div>
+                `;
+                cartItemsElement.appendChild(cartItem);
+            });
+            document.getElementById('cart-total-price').textContent = ' ₹' + total;
+        }
+
+        function openCart() {
+            updateCart(); // Update cart items before opening
+            document.getElementById('cart').style.display = 'block';
+        }
+
+        function closeCart() {
+            document.getElementById('cart').style.display = 'none';
+        }
+
+        function checkout() {
+    let checkoutPopup = document.getElementById('checkout-popup');
+    checkoutPopup.style.display = 'block';
+    setTimeout(function() {
+        checkoutPopup.style.display = 'none';
+    }, 1000); // Close popup after 1000 milliseconds (1 second)
+}
+
+
+    </script>
+</body>
+</html>
